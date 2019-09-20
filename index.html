@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function handleOrientation(event) {
+            var absolute = event.absolute;
+            var alpha    = event.alpha;
+            var beta     = event.beta;
+            var gamma    = event.gamma;
+
+            console.log('absolute', absolute);
+            console.log('alpha', alpha);
+            console.log('beta', beta);
+            console.log('gamma', gamma);
+            console.log((50/45)*gamma);
+            if(gamma > Math.abs(45)) return;
+            let el = document.getElementById('tmobile');
+            if(el){
+                el.style.width = `${(100/90)*gamma+50}vw`;
+            }
+        }
+        window.addEventListener("deviceorientation", handleOrientation, true);
+    </script>
+    <style>
+        body {
+            background: #ff0083;
+            margin: 0;
+        }
+        body #tmobile {
+            height:100vh;
+            background: #e20074;
+            position: relative;
+            -webkit-transition: width 0.0s;
+            transition: width 0.0s;
+        }
+    </style>
+</head>
+<body>
+    <div id="tmobile"></div>
+</body>
+</html>
