@@ -7,14 +7,13 @@
     <title>Document</title>
     <script>
         function handleOrientation(event) {
-            var absolute = event.absolute;
-            var alpha    = event.alpha;
-            var beta     = event.beta;
-            var gamma    = event.gamma;
+            const { absolute, alpha, beta, gamma } = event;
 
             if(gamma > Math.abs(45)) return;
+
             let el = document.getElementById('tmobile');
-            if(el){
+            
+            if (el) {
                 el.style.width = `${(100/90)*gamma+50}vw`;
             }
         }
@@ -25,14 +24,17 @@
 
         function init() {
             if(typeof DeviceMotionEvent.requestPermission !== 'function') return addListener();
-            
-            try {
-                const permission = await DeviceOrientationEvent.requestPermission();
-                if (permission == 'granted') addListener();
-            } catch(e) {
-                console.error(e);
+            if (typeof DeviceMotionEvent.requestPermission === 'function') {
+                try {
+                    const permission = await DeviceOrientationEvent.requestPermission();
+                    if (permission == 'granted') addListener();
+                } catch(e) {
+                    console.error(e);
+                }
             }
         }
+
+        init();
     </script>
     <style>
         body {
