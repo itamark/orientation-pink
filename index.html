@@ -11,7 +11,7 @@
 
             if(gamma > Math.abs(45)) return;
 
-            let el = document.getElementById('tmobile');
+            const el = document.getElementById('tmobile');
             
             if (el) {
                 el.style.width = `${(100/90)*gamma+50}vw`;
@@ -22,14 +22,12 @@
             window.addEventListener("deviceorientation", handleOrientation, true);
         }
 
-        async function init() {
-            if(typeof DeviceOrientationEvent.requestPermission !== 'function') return addListener();
-            try {
-                const permission = await DeviceOrientationEvent.requestPermission();
+        function init() {
+            if(DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== 'function') return addListener();
+            
+            DeviceOrientationEvent.requestPermission().then(function(permission) {
                 if (permission == 'granted') addListener();
-            } catch(e) {
-                console.error(e);
-            }
+            }).catch(console.error);
         }
 
         init();
