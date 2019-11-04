@@ -43,8 +43,9 @@
 
         function init() {
             if(DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== 'function') return addListener();
-            
-            
+        
+        
+            showPermissionButton();
         }
 
         init();
