@@ -22,7 +22,7 @@
             window.addEventListener("deviceorientation", handleOrientation, true);
         }
 
-        function init() {
+        async function init() {
             if(typeof DeviceMotionEvent.requestPermission !== 'function') return addListener();
             if (typeof DeviceMotionEvent.requestPermission === 'function') {
                 try {
