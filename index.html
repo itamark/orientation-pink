@@ -23,14 +23,12 @@
         }
 
         async function init() {
-            if(typeof DeviceMotionEvent.requestPermission !== 'function') return addListener();
-            if (typeof DeviceMotionEvent.requestPermission === 'function') {
-                try {
-                    const permission = await DeviceOrientationEvent.requestPermission();
-                    if (permission == 'granted') addListener();
-                } catch(e) {
-                    console.error(e);
-                }
+            if(typeof DeviceOrientationEvent.requestPermission !== 'function') return addListener();
+            try {
+                const permission = await DeviceOrientationEvent.requestPermission();
+                if (permission == 'granted') addListener();
+            } catch(e) {
+                console.error(e);
             }
         }
 
