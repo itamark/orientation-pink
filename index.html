@@ -28,7 +28,7 @@
         }
 
         function showPermissionButton(){
-            const permissionEl = document.querySelector('#permission');
+            const permissionEl = document.getElementById('permission');
             permissionEl.style.display = 'block';
         }
 
@@ -43,8 +43,6 @@
 
         function init() {
             if(DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== 'function') return addListener();
-        
-        
             showPermissionButton();
         }
 
