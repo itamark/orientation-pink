@@ -42,7 +42,7 @@
         }
 
         function init() {
-            if(DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== 'function') return addListener();
+            if(typeof DeviceOrientationEvent.requestPermission !== 'function') return addListener();
             showPermissionButton();
         }
 
